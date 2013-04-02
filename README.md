@@ -1,4 +1,6 @@
-edx_data_scripts
+edX data scripts
 ================
 
-Scripts for importing and analyzing data dumps from edX.
+Scripts for importing and analyzing data dumps from edX, provided to partner universities.
+
+load_data.py: Loads .sql dumps into a local MySQL database. Depends on table_data.txt.

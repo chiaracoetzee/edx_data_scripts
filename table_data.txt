@@ -1,0 +1,96 @@
+# This script is parsed by load_data.py to create edX tables and determine the list of tables.
+# ASCII tables from documentation: http://data.edx.org/internal_data_formats/sql_schema.html
+
+TABLE auth_user
++------------------------------+--------------+------+-----+
+| Field                        | Type         | Null | Key |
++------------------------------+--------------+------+-----+
+| id                           | int(11)      | NO   | PRI |
+| username                     | varchar(30)  | NO   | UNI |
+| first_name                   | varchar(30)  | NO   |     | # Never used
+| last_name                    | varchar(30)  | NO   |     | # Never used
+| email                        | varchar(75)  | NO   | UNI |
+| password                     | varchar(128) | NO   |     |
+| is_staff                     | tinyint(1)   | NO   |     |
+| is_active                    | tinyint(1)   | NO   |     |
+| is_superuser                 | tinyint(1)   | NO   |     |
+| last_login                   | datetime     | NO   |     |
+| date_joined                  | datetime     | NO   |     |
+| status                       | varchar(2)   | NO   |     | # No longer used
+| email_key                    | varchar(32)  | YES  |     | # No longer used
+| avatar_type                  | varchar(1)   | NO   |     | # No longer used
+| country                      | varchar(2)   | NO   |     | # No longer used
+| show_country                 | tinyint(1)   | NO   |     | # No longer used
+| date_of_birth                | date         | YES  |     | # No longer used
+| interesting_tags             | longtext     | NO   |     | # No longer used
+| ignored_tags                 | longtext     | NO   |     | # No longer used
+| email_tag_filter_strategy    | smallint(6)  | NO   |     | # No longer used
+| display_tag_filter_strategy  | smallint(6)  | NO   |     | # No longer used
+| consecutive_days_visit_count | int(11)      | NO   |     | # No longer used
++------------------------------+--------------+------+-----+
+
+TABLE auth_userprofile
++--------------------+--------------+------+-----+
+| Field              | Type         | Null | Key |
++--------------------+--------------+------+-----+
+| id                 | int(11)      | NO   | PRI |
+| user_id            | int(11)      | NO   | UNI |
+| name               | varchar(255) | NO   | MUL |
+| language           | varchar(255) | NO   | MUL | # Prototype course users only
+| location           | varchar(255) | NO   | MUL | # Prototype course users only
+| meta               | longtext     | NO   |     |
+| courseware         | varchar(255) | NO   |     | # No longer used
+| gender             | varchar(6)   | YES  | MUL | # Only users signed up after prototype
+| mailing_address    | longtext     | YES  |     | # Only users signed up after prototype
+| year_of_birth      | int(11)      | YES  | MUL | # Only users signed up after prototype
+| level_of_education | varchar(6)   | YES  | MUL | # Only users signed up after prototype
+| goals              | longtext     | YES  |     | # Only users signed up after prototype
+| allow_certificate  | tinyint(1)   | NO   |     |
++--------------------+--------------+------+-----+
+
+TABLE student_courseenrollment
++--------------------+--------------+------+-----+
+| Field              | Type         | Null | Key |
++--------------------+--------------+------+-----+
+| id                 | int(11)      | NO   | PRI |
+| user_id            | int(11)      | NO   | UNI |
+| course_id          | varchar(255) | NO   | MUL |
+| created            | datetime     | NO   | MUL |
++--------------------+--------------+------+-----+
+
+TABLE courseware_studentmodule
++-------------+--------------+------+-----+
+| Field       | Type         | Null | Key |
++-------------+--------------+------+-----+
+| id          | int(11)      | NO   | PRI |
+| module_type | varchar(32)  | NO   | MUL |
+| module_id   | varchar(255) | NO   | MUL |
+| student_id  | int(11)      | NO   | MUL |
+| state       | longtext     | YES  |     |
+| grade       | double       | YES  | MUL | # problem, selfassessment, and combinedopenended use this
+| created     | datetime     | NO   | MUL |
+| modified    | datetime     | NO   | MUL |
+| max_grade   | double       | YES  |     | # problem, selfassessment, and combinedopenended use this
+| done        | varchar(8)   | NO   | MUL | # ignore this
+| course_id   | varchar(255) | NO   | MUL |
++-------------+--------------+------+-----+
+
+TABLE certificates_generatedcertificate
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+| user_id       | int(11)      | NO   | MUL | NULL    |                |
+| download_url  | varchar(128) | NO   |     | NULL    |                |
+| grade         | varchar(5)   | NO   |     | NULL    |                |
+| course_id     | varchar(255) | NO   | MUL | NULL    |                |
+| key           | varchar(32)  | NO   |     | NULL    |                |
+| distinction   | tinyint(1)   | NO   |     | NULL    |                |
+| status        | varchar(32)  | NO   |     | NULL    |                |
+| verify_uuid   | varchar(32)  | NO   |     | NULL    |                |
+| download_uuid | varchar(32)  | NO   |     | NULL    |                |
+| name          | varchar(255) | NO   |     | NULL    |                |
+| created_date  | datetime     | NO   |     | NULL    |                |
+| modified_date | datetime     | NO   |     | NULL    |                |
+| error_reason  | varchar(512) | NO   |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
