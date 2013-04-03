@@ -64,7 +64,7 @@ def ascii_table_to_create_table(table_name, ascii_table_lines):
 
 def load_class(class_name):
     print('Creating database for class ' + class_name + '...');
-    recreate_database(get_connection('INFORMATION_SCHEMA'), class_name)
+    recreate_database(get_connection(''), class_name)
     con = get_connection(class_name)
 
     cur = con.cursor()
@@ -106,8 +106,6 @@ def load_class(class_name):
     con.commit()
 
 def main():
-    con = None
-
     if len(sys.argv) == 1:
         print("Please specify password of root MySQL account as command-line parameter.")
         sys.exit(0)
@@ -128,9 +126,5 @@ def main():
     except MySQLdb.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
         sys.exit(1)
-
-    finally:
-        if con:
-            con.close()
 
 main()
