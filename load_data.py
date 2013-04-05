@@ -18,11 +18,12 @@ import warnings
 import sys
 import re
 import os
+import traceback
 
 # warnings.filterwarnings('ignore', category=MySQLdb.Warning)
 
 def get_connection(database_name):
-    return MySQLdb.connect('localhost', 'root', password, database_name)
+    return MySQLdb.connect('localhost', 'root', password, database_name, local_infile=1)
 
 def database_exists(con, name):
     cur = con.cursor()
@@ -71,7 +72,7 @@ def load_class(class_name):
     print("   Creating tables...")
     table_list = []
     with open('table_data.txt') as f:
-        contents = f.read().split("\n")
+        contents = f.read().replace("\r","").split("\n")
         table_state = 0
         ascii_table = []
         for line in contents:
@@ -125,6 +126,7 @@ def main():
     
     except MySQLdb.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
+        traceback.print_exc()
         sys.exit(1)
 
 main()
