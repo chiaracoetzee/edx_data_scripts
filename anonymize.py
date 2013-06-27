@@ -1,5 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# Script to anonymize contents of edX MySQL database, including sensitive info like IPs and
+# hashing user IDs.
+# Author: Derrick Coetzee, all rights waived under Creative Commons CC0 1.0
+# (http://creativecommons.org/publicdomain/zero/1.0/).
 
 import MySQLdb
 import hashlib

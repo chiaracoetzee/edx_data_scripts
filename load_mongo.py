@@ -1,5 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+# Imports edX forum MongoDB files into MongoDB database.
+
+# Author: Derrick Coetzee, all rights waived under Creative Commons CC0 1.0
+# (http://creativecommons.org/publicdomain/zero/1.0/).
+
 import os
 import re
 import subprocess

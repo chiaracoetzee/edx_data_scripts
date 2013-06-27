@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # Reads an edX click tracking file from a 7-Zip archive and filters
 # the entries according to some criteria.
-# Author: Derrick Coetzee, all rights waived under CC0.
+# Author: Derrick Coetzee, all rights waived under Creative Commons CC0 1.0
+# (http://creativecommons.org/publicdomain/zero/1.0/).
 import sys
 import json
 import os

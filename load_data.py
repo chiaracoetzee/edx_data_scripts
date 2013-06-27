@@ -10,9 +10,9 @@
 # Tables and their schemas are inferred from the edX documentation at:
 # http://data.edx.org/internal_data_formats/sql_schema.html
 
-# All rights released under CC0 Waiver.
+# Author: Derrick Coetzee, all rights waived under Creative Commons CC0 1.0
+# (http://creativecommons.org/publicdomain/zero/1.0/).
 
-# Portions based on http://zetcode.com/db/mysqlpython/
 import MySQLdb
 import warnings
 import sys
